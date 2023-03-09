@@ -1,0 +1,10 @@
+Andrea    |4|25 segundos|
+Antonio   |5|10 segundos|
+Laura     |6|20 segundos|
+Alejandra |7|30 segundos|
+Alberto   |8|40 segundos|
+Marcos    |9|50 segundos|
+Luisa     |10|60 segundos|
+Juan      |6|25 segundos|
+Leider    |0|70 segundos|
+Miguel    |9|43 segundos|
