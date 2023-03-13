@@ -1,0 +1,37 @@
+{% load static %}
+{% url 'index' as index %}
+{% url 'contact' as contact %}
+{% url 'student_registration' as student_registration %}
+{% url 'tutorial_request' as tutorial_request %}
+{% url 'calification' as calification %}
+{% url 'tutorial_registration' as tutorial_registration %}
+{% url 'tutorial_response' as tutorial_response %}
+{% url 'calification' as calification %}
+{% url 'be_a_tutor' as be_a_tutor %}
+{% url 'student_modification' as student_modification %}
+{% url 'tutor_modification' as tutor_modification %}
+
+<nav class="navbar navbar-light navbar-expand-md py-3 sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+            <span class="d-flex justify-content-center align-items-center me-2 ">
+               <img src=" {% static 'base/assets/logo.svg' %}" class="udea-logo">
+            </span>
+        </a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                {% include 'base/layouts/partials/navbar/basic_navbar.html' %}
+                {% include 'base/layouts/partials/navbar/student_navbar.html' %}
+                {% include 'base/layouts/partials/navbar/tutor_navbar.html' %}
+            </ul>
+            <ul class="navbar-nav mx-auto">
+            {% include 'base/layouts/partials/navbar/login_navbar.html' %}
+            </ul>
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>{% block title %} {% endblock title %} | Tutorías académicas</title>
+        
+        <link rel="icon" type="image/x-icon" href=" {% static 'base/assets/logo.svg' %}">
+        
+        <link rel="stylesheet" href="{% static 'base/bootstrap/css/bootstrap.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'base/css/Poppins.css' %}">
+        <link rel="stylesheet" href="{% static 'base/css/Navbar-With-Button.css' %}">
+        <link rel="stylesheet" href="{% static 'base/css/styles_mod.css' %}">
+
+        {% block styles %} {% endblock styles %}
+    </head>
+
+    <body>
+            {% include 'base/layouts/partials/navbar.html' %}
+        
+            {% block content %}
+
+            {% endblock content%}
+
+            {% include 'base/layouts/partials/footer.html' %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        {% block scripts %}{% endblock scripts %}
+    </body>
+</html>

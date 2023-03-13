@@ -1,0 +1,193 @@
+/* Color del barra superior */
+:root{
+  --bg-navbar: #3AAFA9;
+  --fg-navbar-items: #17252A;
+  --fg-text-btn: #FEFFFF;
+  --bg-color:#DEF2F1;
+  --borrar:#2B7A78;
+  --bg-btn: #0d4b56;
+}
+.navbar {
+  background-color: var(--bg-navbar);
+}
+
+/* boton de la barra "iniciar sesión" */
+
+.btn-global {
+  background-color:var(--bg-btn); 
+  color: var(--fg-text-btn);
+  border-radius: 12.5px;
+}
+
+.btn-otro {
+  background-color: var(--bg-navbar);
+  color: var(--fg-text-btn);
+   pointer-events: none;
+}
+.btn-global .disabled{
+  background-color: var(--bg-navbar);
+  color: var(--fg-text-btn);
+}
+
+.btn-global:hover{
+  background-color: var(--bg-navbar);
+  color: var(--fg-text-btn);
+}
+
+.btn-navbar:hover{
+  background-color: var(--fg-navbar-items);
+  color: var(--bg-navbar);
+}
+
+.nav-btn {
+  font-size: 18px;
+}
+
+.btn-global:disabled{
+  background-color: var(--bg-navbar);
+  color: var(--fg-text-btn);
+}
+
+/* Modificar body */
+
+body {
+  background-color: var(--bg-color);
+  font-family: Poppins, sans-serif;
+  font-size: 1rem;
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 10%; 
+  box-sizing: border-box;
+}
+
+.form-label{
+  font-size: 1.10rem;
+}
+
+.form-radius{
+  border-radius: 25px;
+}
+
+
+
+.form-control-all{
+  border-radius: 7.5px;
+  border-top: solid 3px;
+  border-top-color: transparent;
+  border-left: solid 3px;
+  border-left-color: transparent;
+  border-right: solid 3px;
+  border-right-color: transparent;
+  border-bottom: solid 3px;
+  border-bottom-color: var(--bg-btn)
+  
+}
+
+.form-control-all:hover{
+  border-color: var(--bg-navbar);
+  border-width: 3px;
+  border-style: groove;
+  outline: none;
+}
+
+.form-control-all:focus{
+  border: 3px solid var(--bg-btn);
+  box-shadow: none;
+}
+
+
+
+
+/* Para cambiar el color del active en la barra superior */
+
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--bg-color);
+}
+
+/* Focus y hover de la barra superior */
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: var(--bg-color);
+}
+
+/* color de las letras barra superior */
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--fg-navbar-items);
+  font-size: 17px;
+}
+
+
+/* Color footer */
+
+footer {
+  background-color: var(--bg-navbar);
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+ 
+}
+
+/* Color "copyright" en footer */
+
+.my-2 {
+  color: var(--fg-text-btn);
+}
+
+/* Links lado derecho footer */
+
+.link-secondary {
+  color: var(--fg-navbar-items)
+}
+
+/* Hover y focus en Links lado derecho footer */
+
+.link-secondary:focus, .link-secondary:hover {
+  color: #000;
+}
+
+.udea-logo{
+  width: 128px;
+  height: 32px;
+}
+
+.bs-icon.bs-icon-primary{
+  color: var(--fg-text-btn);
+  background-color: var(--fg-navbar-items);
+}
+
+.errorlist {
+  text-decoration: none;
+}
+
+.nav-link .nav-text {
+  color: var(--fg-text-btn);
+  list-style: none;
+}
+
+.dropdown, .dropend, .dropstart, .dropup {
+  position: relative;
+  background-color: var(--bg-navbar);
+}
+
+.dropdown-menu{
+  background-color: var(--bg-navbar);
+  color: var(--fg-text-btn);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: var(--fg-text-btn);
+  text-decoration: none;
+  background-color:var(--bg-btn);
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: var(--fg-text-btn);
+  background-color:var(--bg-btn);
+}
+
+.list-inline-item a{
+  color: #FFFFFF;
+}
+
