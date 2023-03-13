@@ -1,0 +1,12 @@
+{% load static %}
+
+<li class="nav-item">
+    <a class="nav-link {% if request.path == index %}active{% endif %}" href="{% url 'index' %}">Inicio</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {% if request.path == contact %}active{% endif %}" href="{% url 'contact' %}">Contacto</a>
+</li>
+
+{% if not request.user.is_authenticated %}
+    <li class="nav-item"><a class="nav-link {% if request.path == student_registration %}active{% endif %}" href="{% url 'student_registration' %}">Registrarse</a></li>
+{% endif %}

@@ -1,0 +1,13 @@
+{% load static %}
+{% if request.user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == be_a_tutor %}active{% endif %}" href="{% url 'be_a_tutor' %}">Ser tutor</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="dropdown-toggle nav-link {% if request.path == tutorial_request or request.path == calification %}active{% endif %} " aria-expanded="false" data-bs-toggle="dropdown" href="#">Tus tutorías</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item {% if request.path == tutorial_request %}active{% endif %} " href="{% url 'tutorial_request' %}">Solicitar tutoría</a>
+                <a class="dropdown-item {% if request.path == calification %}active{% endif %} " href="{% url 'calification' %}">Calificar tutoría</a>
+            </div>
+    </li>
+{% endif %}

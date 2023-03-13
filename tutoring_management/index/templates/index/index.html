@@ -1,0 +1,19 @@
+{% extends 'base/layouts/base.html' %}
+
+
+{% block title %} Inicio {% endblock title %} 
+
+{% block content %}
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }} d-flex align-items-center" role="alert" >
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+        <div>
+            {{ message }}
+        </div>
+    </div>
+{% endfor %}
+<img src="https://www.udea.edu.co/wps/wcm/connect/udea/27ef4887-7dea-43aa-8d1f-059a545bf874/45286412_10156051901907903_50329852703670272_o.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_L8L8H8C0LODDC0A6SSS2AD2GO4-27ef4887-7dea-43aa-8d1f-059a545bf874-mR1fB63" class="img-fluid" alt="ESTO">
+
+
+
+{% endblock content %}

@@ -1,0 +1,9 @@
+{% load static %}
+{% if request.user.role == 'TUTOR' %}
+    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link {% if request.path == tutorial_registration %}active{% endif %} " aria-expanded="false" data-bs-toggle="dropdown" href="#">Mis tutorías</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Tus solicitudes</a>
+            <a class="dropdown-item {% if request.path == tutorial_registration %}active{% endif %}" href="{% url 'tutorial_registration' %}">Registrar tutoría</a>
+        </div>
+    </li>
+{% endif %}

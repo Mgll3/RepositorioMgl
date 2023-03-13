@@ -1,0 +1,31 @@
+{% extends 'base/layouts/forms.html' %}
+
+
+{% block title %} Inicio {% endblock title %} 
+
+{% block forms %}
+<h2 class="text-center">Contáctanos</h2>
+<br>
+<form action="" method='POST' >
+
+    <div class="mb-3">
+        <label  class="form-label" >Nombre</label>
+        <input type="text" class="form-control form-control-all" ></input>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control form-control-all" placeholder="name@example.com">
+    </div>   
+    <div class="mb-3">
+        <label class="form-label">Celular</label>
+        <input type="number" class="form-control form-control-all" min="7" max="10"  ></input>
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Mensaje</label>
+        <textarea class="form-control form-control-all"  rows="3"></textarea>
+    </div>
+    <input type='submit' value='Enviar Mensaje' class='btn btn-global d-block w-100'>
+    
+</form>
+
+{% endblock forms %}

@@ -1,0 +1,7 @@
+{% load static %}
+{% if not request.user.is_authenticated %}
+    <a class="btn btn-global btn-navbar" type="button" href="{% url 'login' %}"> Iniciar sesión </a>
+{% else %}              
+    <a class="btn btn-otro" type="button"> Hola, {{request.user.first_name}}</button>
+    <a class="btn btn-global btn-navbar" type="button" href="{% url 'logout' %}"> Cerrar sesión </a>
+{% endif %}
