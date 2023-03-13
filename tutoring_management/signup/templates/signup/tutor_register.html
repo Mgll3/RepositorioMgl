@@ -1,0 +1,30 @@
+{% extends 'base/layouts/forms.html' %}
+{% load static %}
+
+{% block title %} Registrate {% endblock title %} 
+
+
+{% block forms %}
+<h2 class="text-center">Registrate</h2>
+<br>
+<form action="{% url 'tutor_registration' %}" method='POST' >
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3 form-label">
+            
+            {{ field.label_tag }} 
+            {{ field }}
+            {% if field.help_text %}
+                <div class="invalid-feedback is-invalid">{{ field.help_text|safe }}</div>
+            {% endif %}
+            
+            {% if field.errors %}
+                <div class="alert alert-warning">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <input type='submit' value='Registrate' class='btn btn-global d-block w-100'>
+    
+</form>
+
+{% endblock forms %}

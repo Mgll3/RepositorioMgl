@@ -1,0 +1,77 @@
+{% extends 'base/layouts/tables.html' %}
+{% load static %}
+
+{% block title %} Mis solicitudes {% endblock title %} 
+
+
+{% block forms %}
+
+<h2 class="text-center">Mis solicitudes</h2>
+<br>
+<div class="table-responsive">
+<table class="table align-middle ">
+    <thead>
+      <tr>
+        <th scope="col">Estudiante</th>
+        <th scope="col">Materia</th>
+        <th scope="col">Temas Abordar</th>
+        <th scope="col">Estado</th>
+        <th scope="col"></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+
+    {% for val in context %}
+        <tr>
+            <td>{{val.student}}</td> 
+            <td>{{val.subject}}</td>
+            <td>{{val.topics}}</td>
+            <td>{{val.get_state_display}}</td>
+            <td>
+                {% if val.state is 0 %}
+                <div class="btn-group" role="group">
+                    <a href="{% url 'approve_tutorial_request' val.id %}" type="button" class="btn btn-success" data-toggle="tooltip" title="Aceptar la solicitud">✓</a>
+                    <a href="{% url 'reject_tutorial_request' val.id %}" type="button" class="btn btn-danger" data-toggle="tooltip" title="Rechazar la solicitud">✗</a>
+                </div>
+                {% endif%}
+            </td> 
+        </tr>
+    {% endfor %}
+      
+    </tbody>
+
+</table>
+</div>
+
+
+{% comment "" %}
+<form action={% url 'tutorial_request' %} method='POST' >
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3 form-label">
+            
+            {{ field.label_tag }} 
+            {{ field }}
+            
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            {{ field.errors }}
+        </div>
+    {% endfor %}            
+    <input type='submit' value='Solicitar tutoría' class='btn btn-global d-block w-100'>
+    <br>
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} d-flex align-items-center" role="alert" >
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div>
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+</form>
+{% endcomment %}
+
+{% endblock forms %}

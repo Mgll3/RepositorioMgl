@@ -1,0 +1,37 @@
+{% extends 'base/layouts/forms.html' %}
+{% load static %}
+
+{% block title %} Respuesta a solicitud {% endblock title %} 
+
+
+{% block forms %}
+
+<h2 class="text-center">Respuesta de solicitud de tutoría</h2>
+<br>
+<h6 class="text-center">Envía la respuesta al estudiante de la fecha, hora y lugar para dar la tutoría solicitada.</h6>
+<br>
+<form action={% url 'tutor_response'%} method='POST' >
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3 form-label">
+            {{ field.label_tag }} 
+            {{ field }}
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            {{ field.errors }}
+        </div>
+    {% endfor %}            
+    <input type='submit' value='Enviar mensaje' class='btn btn-global d-block w-100'>
+    <br>
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} d-flex align-items-center" role="alert" >
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div>
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+</form>
+
+{% endblock forms %}
