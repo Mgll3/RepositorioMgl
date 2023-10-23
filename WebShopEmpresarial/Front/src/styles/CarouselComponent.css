@@ -1,0 +1,13 @@
+.carousel-container {
+   
+    display:flex;
+    width: 600px;
+    height: 100px;
+    
+    position: relative;
+    left: 590px;
+    top: 200px;
+}
+
+
+

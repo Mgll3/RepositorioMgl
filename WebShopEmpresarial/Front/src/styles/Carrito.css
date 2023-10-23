@@ -1,0 +1,12 @@
+.Carrito{
+    padding: 20px 25px;
+    background-image: url("../images/carrito.png") ; /* Color de fondo del botón */
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    cursor: pointer;
+    left: 50px;
+    position: relative;
+    left: 1848px;
+    bottom: 30px;
+
+}

@@ -1,0 +1,22 @@
+.PromoSection{
+    position: relative;
+    top:300px;
+}
+
+.promoProducts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 160px; /* Este espacio se asegura de que haya un pequeño margen entre cada PromoBox */
+    justify-content: flex-start; /* Alinea los PromoBox al inicio del contenedor */
+}
+
+.promoTitle {
+    font-size: 4.5rem; /* Aumentamos el tamaño del texto */
+    color: #c20ccfdd;   /* Cambiamos el color a un tono rojo */
+    text-align: center; /* Centramos el texto */
+    margin-top: 20px; /* Agregamos un margen superior para darle más espacio */
+    font-weight: bold; /* Hacemos el texto más grueso */
+    text-transform: uppercase; /* Convertimos el texto a mayúsculas */
+    letter-spacing: 2px; /* Espaciamos un poco las letras */
+    font-family: Arial, sans-serif; 
+}

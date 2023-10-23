@@ -1,0 +1,19 @@
+
+.App {
+  background-image: url("../images/fondo.png");
+  background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el elemento */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+  background-attachment: fixed; /* Fija la imagen de fondo en su lugar mientras se desplaza la página */
+
+  /* Establece el tamaño del div para cubrir toda la ventana del navegador */
+  width: 100vw;
+  height: 200vh;
+
+  /* Establece márgenes y relleno a 0 para asegurarse de que el div no tenga espacio adicional */
+  margin: 0;
+  padding: 0;
+  
+
+}
+
+

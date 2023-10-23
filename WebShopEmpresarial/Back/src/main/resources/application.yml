@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./Back\src\main\java\com\webShop\back\webshop
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true

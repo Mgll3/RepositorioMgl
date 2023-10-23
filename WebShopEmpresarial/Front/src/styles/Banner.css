@@ -1,0 +1,12 @@
+.Banner {
+    background-image: url("../images/banner.png"); /* Color de fondo del banner */
+    margin-top: 0px;
+    width: 99vw;
+    height: 15vh;
+    position: absolute;
+    align-items: center;
+    }
+
+    .Items{
+        background-color: transparent;
+    }

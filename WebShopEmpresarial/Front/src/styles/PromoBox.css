@@ -1,0 +1,52 @@
+.PromoBox {
+    
+    padding: 20px;  /* Aumenta el padding */
+    margin: 20px;   /* Aumenta el margen */
+    vertical-align: top;
+    width: 300px;   /* Aumenta el ancho */
+    text-align: center;
+    
+    flex-wrap: wrap;
+    gap: 20px;      /* Aumenta el espacio entre elementos */
+    transform: scale(1);  /* Tamaño inicial */
+    transition: transform 0.3s ease;  /* Animación suave durante 0.3 segundos */
+}
+
+.promoBox__image {
+   
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 10px;  /* Este es el "margen" con color */
+    margin: 10px;   /* Este es el margen real que separa cada PromoBox */
+    background-color: #a411d1d7;  
+    vertical-align: top;
+    width: 300px;  /* Ajusta según lo necesario */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-radius: 50px;
+
+}
+
+.promoBox__price {
+    font-weight: bold;
+    font-size: 35px;  /* Aumenta el tamaño de fuente */
+    color: #000000;  /* Cambia el color a un naranja llamativo */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);  /* Añadir sombreado */
+    margin: 10px 0;  /* Ajustar el margen */
+    padding: 5px 10px;  /* Ajustar el relleno */
+    
+    border-radius: 5px;  /* Bordes redondeados (opcional) */
+}
+
+
+.PromoBox:hover {
+    transform: scale(1.1);  /* 10% más grande al hacer hover */
+}
+
+    
+ 
