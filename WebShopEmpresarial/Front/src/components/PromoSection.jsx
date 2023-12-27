@@ -4,33 +4,32 @@ import "../styles/PromoSection.css"
 import { ProductService } from '../service/ProductService';
 
 class PromoSection extends Component{
-
     constructor(){
         super();
-        this.state = {};
+        this.state = {
+            products: []
+        };
         this.ProductService = new ProductService();
-        this.products = []
-        this.ProductService.getAll().then(data => this.products.push(data))
-      }
+    }
     
-      componentDidMount(){
-        this.ProductService.getAll().then(data => this.setState({productos: data}))
-        console.log(this.products)
-      }
-
+    componentDidMount(){
+        this.ProductService.getAll().then(data => this.setState({products: data}))
+    }
 
     render(){
-
+        var products = this.state.products;
         return (
-            <div className="PromoSection">
+            <div className="PromoSection debug">
                 <h1 className="promoTitle">Productos en Promoción y Nuevos</h1>
-                    <div className="promoProducts">
-                    {this.products.map(product => (
+                <div className="promoProducts">
+                {products.map(product => (
                         <PromoBox key={product.id} product={product} />
                     ))}
+                   
                 </div>
             </div>
         );
     }
-};
+}
+
 export default PromoSection;

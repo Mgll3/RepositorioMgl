@@ -1,6 +1,9 @@
 .PromoSection{
-    position: relative;
-    top:300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    
 }
 
 .promoProducts {
@@ -8,6 +11,7 @@
     flex-wrap: wrap;
     gap: 160px; /* Este espacio se asegura de que haya un pequeño margen entre cada PromoBox */
     justify-content: flex-start; /* Alinea los PromoBox al inicio del contenedor */
+    
 }
 
 .promoTitle {
@@ -19,4 +23,8 @@
     text-transform: uppercase; /* Convertimos el texto a mayúsculas */
     letter-spacing: 2px; /* Espaciamos un poco las letras */
     font-family: Arial, sans-serif; 
+}
+
+.debug{
+    border: 2px solid red;
 }

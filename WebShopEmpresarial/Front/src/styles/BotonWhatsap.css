@@ -1,13 +1,13 @@
-
-
 .whatsapp-button {
-    background-image: url("../images/Whatsap.png");
    
+    background-color: transparent;
+    border: none;
+    position: relative;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
-    
+    bottom: 180px;
 }
 

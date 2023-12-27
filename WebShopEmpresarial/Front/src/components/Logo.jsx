@@ -6,7 +6,7 @@ import LogoImage from "../images/Logo.png"
 const Logo =()=>{
     return(
 
-        <div >
+        <div className="contenedor-Logo">
         
         <img src={LogoImage} alt="Logo de la tienda" className="Logo" />
         </div>

@@ -22,13 +22,13 @@ public class ProductoServices {
         if (productoEncontrado.isEmpty()){
             return null;  
         } else {
-            return producto.crearDto(productoEncontrado.get());
+            return productoEncontrado.get().crearDto();
         }
     }
 
     public Producto guardarProducto(ProductoDTO producto) {
         try {
-            Producto productoNuevo = new Producto(null, producto.getNombre(), producto.getPrecio(), producto.getImagenPrincipal());
+            Producto productoNuevo = new Producto(producto);
             return IproductoDAO.saveAndFlush(productoNuevo);
         } catch (Exception e) {
             System.out.println("Error al guardar el producto"+ e);
@@ -48,9 +48,6 @@ public class ProductoServices {
     }
 
     public boolean eliminarProducto(Long id) {
-        // if (IproductoDAO.existsById(id)){
-        //         return false;
-        //     }
         try {
             IproductoDAO.deleteById(id);
             return true;

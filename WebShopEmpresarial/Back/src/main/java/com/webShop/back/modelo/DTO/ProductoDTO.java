@@ -11,25 +11,22 @@ public class ProductoDTO{
     private int precio;
     @Getter
     private String imagenPrincipal;
-    //@Getter
-    //private DetalleProductoDTO detalleProductoDTO;
-    //Constructor sin id
-    // public ProductoDTO(String nombre, int precio, String imagenPrincipal) {
-    //     this.nombre = nombre;
-    //     this.precio = precio;
-    //     this.imagenPrincipal = imagenPrincipal;
-    //     // this.detalleProductoDTO = detalleProductoDTO;
-    // }
-    //Constructor con id
-    public ProductoDTO(Long idLong, String nombre, int precio, String imagenPrincipal) {
-        this.id = idLong;
+    @Getter
+    private DetalleProductoDTO detalleProducto;
+    
+    public ProductoDTO(Long id, String nombre, int precio, String imagenPrincipal, DetalleProductoDTO detalleProducto) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.imagenPrincipal = imagenPrincipal;
-        // this.detalleProductoDTO = detalleProductoDTO;
+        this.detalleProducto = detalleProducto;
     }
+
+    
     public ProductoDTO() {
     }
+
+    
     
 
 }

@@ -1,25 +1,32 @@
 .SearchBox{
     padding: 5px;
-    width: 25%; /* Ancho del cuadro de búsqueda */
+    width: 100%; /* Ancho del cuadro de búsqueda */
     border: none;
     border-radius: 10px;
-    margin-right: 100px; /* Espacio entre el cuadro de búsqueda y el botón */
-    position:relative;
-    left: 600px;
-    top: 10px;
+    margin-right: 10px; /* Espacio entre el cuadro de búsqueda y el botón */
+    
+    
+   
 }
 
 .Boton_busqueda{
 
     padding: 5px;
-    width: 80px;
+    width: 140px;
     background-color: #FFA500; /* Color de fondo del botón */
     border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    position:relative;
-    left: 510px;
-    top: 10px;
-
 }
+
+.Contenedorsb{
+  
+    display: flex;
+    
+    align-items: center;
+    width:500px;
+    align-content: center;
+    
+}
+

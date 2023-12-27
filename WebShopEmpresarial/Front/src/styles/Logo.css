@@ -1,8 +1,23 @@
 .Logo{
-    position: relative;
-    left: 800px;
-    width: 100px; /* O el valor que desees */
+    
+    width: 75px; 
     height: auto;
-   background-color: transparent;
-    bottom: 60px;
-}
+    background-color: transparent;
+  
+   
+    
+   
+    }
+
+    .contenedor-Logo{
+        border: 2px solid red;
+        width: 75px; 
+        margin-right: 20px;
+        margin-left: 400px;
+        display: flex;
+        align-items: center;
+
+      
+          
+
+    }

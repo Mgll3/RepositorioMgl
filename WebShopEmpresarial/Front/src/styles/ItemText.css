@@ -4,9 +4,8 @@ ul {
     padding: 0; /* Elimina el padding predeterminado */
     margin: 0; /* Elimina el margen predeterminado */
     display: flex; /* Establece la disposición en línea */
-    position: relative;
-    top: 30px;
-    left: 10px;
+    
+    
 }
 
 /* Estiliza cada elemento de la lista */
@@ -24,4 +23,12 @@ li a {
 /* Si deseas que los enlaces cambien de color al pasar el ratón por encima, puedes agregar el siguiente estilo: */
 li a:hover {
     color: #ccc; /* Cambia el color del enlace al pasar el ratón por encima */
+}
+
+
+
+.Text{
+   
+    display: flex;
+    align-items: flex-end;
 }
