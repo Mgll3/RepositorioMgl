@@ -17,6 +17,6 @@ Aplicación web, publicacion y compra de productos con carrito de compras
 ## Authors
 
 - [@Mgll3](https://www.github.com/Mgll3) Back-End
-
+- [@Veritax0](https://github.com/Veritax0) Front-End
 
 
