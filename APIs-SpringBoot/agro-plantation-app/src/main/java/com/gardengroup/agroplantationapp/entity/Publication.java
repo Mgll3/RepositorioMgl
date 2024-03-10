@@ -1,24 +1,19 @@
-package com.gardengroup.agroplantationapp.entities;
+package com.gardengroup.agroplantationapp.entity;
 
 
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.gardengroup.agroplantationapp.dto.PublicationSaveDTO;
+import com.gardengroup.agroplantationapp.dto.PublicationUpdDTO;
+
 @Entity
 @Data
+@NoArgsConstructor
 public class Publication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,4 +56,22 @@ public class Publication {
         }
         
     }
+
+    
+
+    public Publication(PublicationSaveDTO publicationDTO){
+        this.title = publicationDTO.getTitle();
+        this.plantation = publicationDTO.getPlantation();
+        this.visibility = publicationDTO.isVisibility();
+        this.score = publicationDTO.getScore();
+        
+    }
+
+    public Publication(PublicationUpdDTO publicationDTO){
+        this.id = publicationDTO.getId();
+        this.title = publicationDTO.getTitle();
+        this.plantation = publicationDTO.getPlantation();
+        this.visibility = publicationDTO.getVisibility();
+    }
+    
 }
