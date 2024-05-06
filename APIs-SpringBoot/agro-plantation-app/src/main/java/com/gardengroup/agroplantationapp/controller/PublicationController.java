@@ -1,10 +1,10 @@
 package com.gardengroup.agroplantationapp.controller;
 
 import java.util.List;
-
-import com.gardengroup.agroplantationapp.dto.PublicationSaveDTO;
-import com.gardengroup.agroplantationapp.dto.PublicationUpdDTO;
-import com.gardengroup.agroplantationapp.entity.Publication;
+import com.gardengroup.agroplantationapp.model.dto.publication.PublicationSaveDTO;
+import com.gardengroup.agroplantationapp.model.dto.publication.PublicationUpdDTO;
+import com.gardengroup.agroplantationapp.model.entity.Publication;
+import com.gardengroup.agroplantationapp.model.entity.Vote;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,7 +52,7 @@ public class PublicationController {
 
     @Operation(summary = "Guardar las imágenes de una publicacion ya creada",
             description = "End Point para subir imagenes a la nube", tags = {"Publication"})
-    @Parameter(name = "mainFile", description = "Imagen principal que se va a guardar")
+    @Parameter(name = "mainImage", description = "Imagen principal que se va a guardar")
     @Parameter(name = "images", description = "Lista de imagenes secundarias que se van a guardar")
     @Parameter(name = "publicationId", description = "Id de la publicación a la que se le van a asociar las imagenes")
     @PostMapping("/saveImages")
@@ -67,7 +67,6 @@ public class PublicationController {
             return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
         }
     }
@@ -117,6 +116,7 @@ public class PublicationController {
             }
         }
     }
+
 
     @Operation(summary = "Actualizar Publicación existente",
             description = "Modificar los datos de una publicación ya existente", tags = "Publication")
@@ -175,7 +175,6 @@ public class PublicationController {
     })
     @PutMapping("/updateVisibility/{publicationId}")
     public ResponseEntity<?> updateVisibility(@PathVariable Long publicationId, HttpServletRequest request) {
-
         try {
             String email = securityService.getEmail(request);
             Publication updatedPublication = publicationService.updateVisibility(publicationId, email);
@@ -199,15 +198,102 @@ public class PublicationController {
             @ApiResponse(responseCode = "501", description = "Error al procesar la solicitud",
                     content = @Content(schema = @Schema(implementation = String.class)))
     })
-
     @GetMapping("publications/top")
     public ResponseEntity<List<Publication>> getTopPublications() {
         List<Publication> topPublications = publicationService.getTopPublications();
         return new ResponseEntity<>(topPublications, HttpStatus.OK);
     }
 
+    @Operation(summary = "Alternar voto para una publicación",
+            description = "Endpoint para alternar el voto (me gusta/no me gusta) para una publicación específica, necesita token", 
+            tags = "Publication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Voto alternado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
+    @PostMapping("/toggleVote/{publicationId}")
+    public ResponseEntity<?> toggleVote(@PathVariable Long publicationId, HttpServletRequest request) {
+        try {
+            String email = securityService.getEmail(request);
+            Vote vote = publicationService.toggleVote(publicationId, email);
+            return ResponseEntity.status(HttpStatus.CREATED).body(vote);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @Operation(summary = "Obtener publicaciones pendientes", 
+        description = "Endpoint para obtener las publicaciones pendientes", tags = "Publication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Éxito al obtener las publicaciones pendientes",
+                    content = @Content(schema = @Schema(implementation = List.class))),
+            @ApiResponse(responseCode = "204", description = "No hay publicaciones pendientes para mostrar"),
+            @ApiResponse(responseCode = "501", description = "Error al procesar la solicitud",
+                    content = @Content(schema = @Schema(implementation = String.class)))
+    })
+    @GetMapping("/pendingPublications")
+    public ResponseEntity<List<Publication>> getPendingPublications() {
+        List<Publication> pendingPublications = publicationService.pendingPublications();
+        return ResponseEntity.ok(pendingPublications);
+    }
+
+    @Operation(summary = "Aprobar publicación", 
+        description = "Endpoint para aprobar una solicitud de publicación", tags = "Publication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Éxito al aprobar la publicación"),
+            @ApiResponse(responseCode = "400", description = "Error al procesar la solicitud")
+    })
+    @PutMapping("/approvePublication/{publicationId}")
+    public ResponseEntity<?> approvePublication(@PathVariable Long publicationId) {
+        try {
+            publicationService.approvePublication(publicationId);
+            return ResponseEntity.ok("La solicitud de publicación ha sido aprobada con éxito.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al aprobar la solicitud de publicación");
+        }
+    }
+
+    @Operation(summary = "Rechazar publicación", 
+        description = "Endpoint para rechazar una solicitud de publicación", tags = "Publication")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Éxito al rechazar la publicación"),
+            @ApiResponse(responseCode = "400", description = "Error al procesar la solicitud")
+    })
+    @PutMapping("/rejectPublication/{publicationId}")
+    public ResponseEntity<?> rejectPublication(@PathVariable Long publicationId) {
+        try {
+            publicationService.rejectPublication(publicationId);
+            return ResponseEntity.ok("La solicitud de publicación ha sido rechazada con éxito.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al rechazar la solicitud de publicación");
+        }
+    }
+
+    @GetMapping("/like/{pag}")
+    public ResponseEntity<List<Publication>> getPublicationsByLike(@PathVariable int pag) {
+        try {
+            List<Publication> publications = publicationService.getPublicationsByLike(pag);
+            return new ResponseEntity<>(publications, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            if (e.getMessage().equals("Publications not found")) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+        }
+    }
 
 }
+
+
+
+
+
 
 
 

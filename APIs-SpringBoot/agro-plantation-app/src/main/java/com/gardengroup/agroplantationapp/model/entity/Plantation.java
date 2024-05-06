@@ -1,4 +1,4 @@
-package com.gardengroup.agroplantationapp.entity;
+package com.gardengroup.agroplantationapp.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class Plantation {
     private String plantType;
     @Column(length = 10 , nullable = false)
     private String seasson;
-
+    @Column(length = 10 , nullable = false)
     private Integer waterAmount;
     @Column(length = 300 , nullable = false)
     private String details;

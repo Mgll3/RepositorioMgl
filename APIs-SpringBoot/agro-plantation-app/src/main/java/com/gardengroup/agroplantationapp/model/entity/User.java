@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gardengroup.agroplantationapp.entity;
+package com.gardengroup.agroplantationapp.model.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -12,11 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- *
- * @author sofia
- */
-//lombok genera un constructor sin elementos
+
 @Entity
 @Table(name ="user")
 @Getter
@@ -35,7 +33,6 @@ public class User {
     @Column(length = 30 , nullable = false)
     private String lastname;
 
-
     @Column(length = 30, nullable = false)
     private String email;
 
@@ -44,12 +41,25 @@ public class User {
 
     @Column(name = "password", length = 100 , nullable = false)
     private String password;
+    
 
     @Column(columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean totalAuthorization;
 
     @ManyToOne
     private UserType userType;
+
+    //Hago que la contraseña y el correo sea seguro y que no la envie al front
+    @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
+
+    @JsonIgnore
+    public String getAddress() {
+        return address;
+    }
+
 
 
 }
