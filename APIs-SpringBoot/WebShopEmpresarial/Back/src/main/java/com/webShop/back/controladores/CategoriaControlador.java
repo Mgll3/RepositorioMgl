@@ -48,10 +48,11 @@ public class CategoriaControlador {
     @DeleteMapping("/{id}")
     public ResponseEntity<CategoriaDTO> eliminarPorId(@PathVariable Long id){
         Boolean categoriaEncontrada = categoriaServices.eliminarCategoria(id);
-        if (categoriaEncontrada == false){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        } else {
+        if (categoriaEncontrada){
             return  ResponseEntity.noContent().build();
+            
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }

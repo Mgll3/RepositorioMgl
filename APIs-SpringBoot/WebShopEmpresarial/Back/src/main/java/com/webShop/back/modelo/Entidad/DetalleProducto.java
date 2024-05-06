@@ -1,42 +1,41 @@
 package com.webShop.back.modelo.Entidad;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
+import jakarta.persistence.*;
 
 import com.webShop.back.modelo.DTO.DetalleProductoDTO;
+
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "detalle_producto")
 public class DetalleProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name="inventario_id")
-    private Inventario inventario;
     private String descripcion;
     private String caracteristicas;
-    private String imagen1;
-    private String imagen2;
-    private String imagen3;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Image imagen1;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Image imagen2;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Image imagen3;
     @ManyToOne
     @JoinColumn(name="categoria_id")
     private Categoria categoria;
+    @JoinColumn(name="inventario_id")
+    @OneToOne
+    private Inventario inventario;
+    
 
     //Constructores
     public DetalleProducto() {  
     }
     
     public DetalleProducto(Long id, Inventario inventario, String descripcion, String caracteristicas,
-        String imagen1, String imagen2, String imagen3, Categoria categoria) {
+        Image imagen1, Image imagen2, Image imagen3, Categoria categoria) {
         this.id = id;
         this.inventario = inventario;
         this.descripcion = descripcion;

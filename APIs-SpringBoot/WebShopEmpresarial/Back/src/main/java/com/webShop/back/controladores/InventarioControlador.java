@@ -54,8 +54,4 @@ public class InventarioControlador {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-
-
-
-
 }

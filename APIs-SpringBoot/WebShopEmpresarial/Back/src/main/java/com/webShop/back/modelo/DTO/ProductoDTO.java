@@ -1,5 +1,7 @@
 package com.webShop.back.modelo.DTO;
 
+import com.webShop.back.modelo.Entidad.Image;
+
 import lombok.Getter;
 
 public class ProductoDTO{
@@ -10,18 +12,14 @@ public class ProductoDTO{
     @Getter
     private int precio;
     @Getter
-    private String imagenPrincipal;
-    @Getter
     private DetalleProductoDTO detalleProducto;
     
-    public ProductoDTO(Long id, String nombre, int precio, String imagenPrincipal, DetalleProductoDTO detalleProducto) {
+    public ProductoDTO(Long id, String nombre, int precio, DetalleProductoDTO detalleProducto) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        this.imagenPrincipal = imagenPrincipal;
         this.detalleProducto = detalleProducto;
     }
-
     
     public ProductoDTO() {
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.webShop.back.modelo.DTO.CategoriaDTO;
 import com.webShop.back.modelo.Entidad.Categoria;
-import com.webShop.back.persistencia.ICategoriaDAO;
+import com.webShop.back.persistencia.CategoriaDAO;
 
 
 
@@ -15,7 +15,7 @@ import com.webShop.back.persistencia.ICategoriaDAO;
 public class CategoriaServices {
     
     @Autowired     
-    private ICategoriaDAO ICategoriaDAO;
+    private CategoriaDAO ICategoriaDAO;
 
 
     public CategoriaDTO buscarPorId(Long id){

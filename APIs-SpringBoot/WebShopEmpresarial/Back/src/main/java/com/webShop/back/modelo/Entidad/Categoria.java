@@ -1,25 +1,23 @@
 package com.webShop.back.modelo.Entidad;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
 
 import com.webShop.back.modelo.DTO.CategoriaDTO;
+
+import jakarta.persistence.*;
 
 import java.util.Set;
 
 import lombok.Getter;
 
-@Entity 
+@Entity
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
+    @Getter
     private String nombre;
-    @OneToMany(mappedBy = "categoria")
-    private Set<DetalleProducto> detalleProducto;
 
     public Categoria(Long id, String nombre) {
         this.id = id;
