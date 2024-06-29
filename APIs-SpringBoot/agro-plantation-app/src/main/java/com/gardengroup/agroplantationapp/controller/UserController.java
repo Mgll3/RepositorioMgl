@@ -1,7 +1,7 @@
 package com.gardengroup.agroplantationapp.controller;
 
 import com.gardengroup.agroplantationapp.model.dto.user.AthAnswerDTO;
-import com.gardengroup.agroplantationapp.service.UserService;
+import com.gardengroup.agroplantationapp.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     @Operation(summary = "Obtener sesión de usuario", 
     description = "Endpoint para obtener la sesión de usuario con el token de autenticación", tags = {"User"})
@@ -37,6 +37,6 @@ public class UserController {
         
     }
 
-    
+
 }
 

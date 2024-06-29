@@ -1,5 +1,6 @@
 package com.gardengroup.agroplantationapp.service;
 
+import com.gardengroup.agroplantationapp.model.dto.publication.PublicationFilterDTO;
 import com.gardengroup.agroplantationapp.model.dto.publication.PublicationSaveDTO;
 import com.gardengroup.agroplantationapp.model.dto.publication.PublicationUpdDTO;
 import com.gardengroup.agroplantationapp.model.entity.*;
@@ -109,15 +110,12 @@ public class PublicationService implements IPublicationService {
                     publication.setVisibility(true);
                     return publicationRepository.save(publication);
                 } else {
-                    System.out.println("La publicación no está autorizada");
                     return null;
                 }
             } else {
-                System.out.println("No es el autor de la publicación");
                 return null;
             }
         } else {
-            System.out.println("Publicación no encontrada");
             return null;
         }
     }
@@ -137,7 +135,7 @@ public class PublicationService implements IPublicationService {
         if (publication.isPresent()) {
             return publication.get();
         } else {
-            throw new DataAccessException("Publications not found") {
+            throw new DataAccessException("Publication not found") {
             };
         }
 
@@ -185,6 +183,7 @@ public class PublicationService implements IPublicationService {
             cloudinaryService.delete(publicationSaved.getMainImage().getId());
         }
         if (publicationSaved.getImages() != null) {
+            
             for (Image image : publicationSaved.getImages()) {
                 cloudinaryService.delete(image.getId());
             }
@@ -297,21 +296,220 @@ public class PublicationService implements IPublicationService {
 
 
     @Transactional
-    public List<Publication> getPublicationsByLike(int pag){
+    public PublicationFilterDTO getPublicationsByLike(int pag){
         
         if (pag < 1) {
             throw new IllegalArgumentException("Invalid page number");
         }
-        pag = (pag-1) * 15;
-        int pagTop= pag + 15;
-        final List<Publication> publications = publicationRepository.publicationsBylike(pag, pagTop);
 
-        if (publications.size() > 0) {
-            return publications;
+        // Busco si hay 3 paginaciones más adelante de la actual (1 Paginacion = 15)
+        if (pag == 1) {
+            pag = 0;
+        } else {
+            pag = (pag-1) * 15;
+        }
+        int pagTop = pag * 15 + 31;
+
+        List<Publication> publications = publicationRepository.publicationsBylike(pag, pagTop);
+        //Calculo número posible de paginaciones que hay en base de datos
+        Double paginationDouble = (double) publications.size() / 15;
+        int pagination = (int) Math.ceil(paginationDouble);
+
+        if (!publications.isEmpty()) {
+            if (publications.size() > 14) {
+                //Envio solo 15 publicaciones que necesita el front
+                publications = publications.subList(0, 14);
+            } 
+
+            PublicationFilterDTO publicationsDTO = new PublicationFilterDTO(publications, pagination);
+            return publicationsDTO;
+
         } else {
             throw new DataAccessException("Publications not found") {
             };
         }
     }
+
+    @Transactional
+    public PublicationFilterDTO getPublicationsByUser(int pag){
+
+        if (pag < 1) {
+            throw new IllegalArgumentException("Invalid page number");
+        }
+
+        // Busco si hay 3 paginaciones más adelante de la actual (1 Paginacion = 15)
+        if (pag == 1) {
+            pag = 0;
+        } else {
+            pag = (pag-1) * 15;
+        }
+        int pagTop = pag * 15 + 31;
+
+        List<Publication> publications = publicationRepository.publicationsByUser(pag, pagTop);
+        //Calculo número posible de paginaciones que hay en base de datos
+        Double paginationDouble = (double) publications.size() / 15;
+        int pagination = (int) Math.ceil(paginationDouble);
+
+        if (!publications.isEmpty()) {
+            if (publications.size() > 14) {
+                //Envio solo 15 publicaciones que necesita el front
+                publications = publications.subList(0, 14);
+            } 
+
+            PublicationFilterDTO publicationsDTO = new PublicationFilterDTO(publications, pagination);
+            return publicationsDTO;
+
+        } else {
+            throw new DataAccessException("Publications not found") {
+            };
+        }
+    }
+
+    @Transactional
+    public PublicationFilterDTO getPublicationsByDate(int pag){
+        
+        if (pag < 1) {
+            throw new IllegalArgumentException("Invalid page number");
+        }
+
+        // Busco si hay 3 paginaciones más adelante de la actual (1 Paginacion = 15)
+        if (pag == 1) {
+            pag = 0;
+        } else {
+            pag = (pag-1) * 15;
+        }
+        int pagTop = pag * 15 + 31;
+
+        List<Publication> publications = publicationRepository.publicationsByDate(pag, pagTop);
+        //Calculo número posible de paginaciones que hay en base de datos
+        Double paginationDouble = (double) publications.size() / 15;
+        int pagination = (int) Math.ceil(paginationDouble);
+
+        if (!publications.isEmpty()) {
+            if (publications.size() > 14) {
+                //Envio solo 15 publicaciones que necesita el front
+                publications = publications.subList(0, 14);
+            } 
+
+            PublicationFilterDTO publicationsDTO = new PublicationFilterDTO(publications, pagination);
+            return publicationsDTO;
+
+        } else {
+            throw new DataAccessException("Publications not found") {
+            };
+        }
+    }
+
+    @Transactional
+    public PublicationFilterDTO getPublicationsByAleatory(int pag){
+        
+        if (pag < 1) {
+            throw new IllegalArgumentException("Invalid page number");
+        }
+
+        // Busco si hay 3 paginaciones más adelante de la actual (1 Paginacion = 15)
+        if (pag == 1) {
+            pag = 0;
+        } else {
+            pag = (pag-1) * 15;
+        }
+        int pagTop = pag * 15 + 31;
+
+        List<Publication> publications = publicationRepository.publicationsByAleatory(pag, pagTop);
+        //Calculo número posible de paginaciones que hay en base de datos
+        Double paginationDouble = (double) publications.size() / 15;
+        int pagination = (int) (Math.ceil(paginationDouble)-1);
+
+        if (!publications.isEmpty()) {
+            if (publications.size() > 14) {
+                //Envio solo 15 publicaciones que necesita el front
+                publications = publications.subList(0, 14);
+            } 
+
+            PublicationFilterDTO publicationsDTO = new PublicationFilterDTO(publications, pagination);
+            return publicationsDTO;
+
+        } else {
+            throw new DataAccessException("Publications not found") {
+            };
+        }
+    }
+
+    @Transactional
+    public PublicationFilterDTO getPublicationsByPending(int pag){
+        
+        if (pag < 1) {
+            throw new IllegalArgumentException("Invalid page number");
+        }
+
+        // Busco si hay 3 paginaciones más adelante de la actual (1 Paginacion = 15)
+        if (pag == 1) {
+            pag = 0;
+        } else {
+            pag = (pag-1) * 15;
+        }
+        int pagTop = pag * 15 + 31;
+
+        final List<Publication> publications = publicationRepository.publicationsByPending(pag, pagTop);
+        //Calculo número posible de paginaciones que hay en base de datos
+        Double paginationDouble = (double) publicationRepository.countPublicationsByPending() / 15;
+        int pagination = (int) Math.ceil(paginationDouble);
+
+        if (!publications.isEmpty()) {
+            PublicationFilterDTO publicationsDTO = new PublicationFilterDTO(publications, pagination);
+            return publicationsDTO;
+        } else {
+            throw new DataAccessException("Publications not found") {
+            };
+        }
+
+    }
+
+    @Transactional
+    public PublicationFilterDTO getPublicationsByQuantity(int pag){
+        
+        if (pag < 1) {
+            throw new IllegalArgumentException("Invalid page number");
+        }
+
+        // Busco si hay 3 paginaciones más adelante de la actual (1 Paginacion = 15)
+        if (pag == 1) {
+            pag = 0;
+        } else {
+            pag = (pag-1) * 15;
+        }
+        int pagTop = pag * 15 + 31;
+        
+        List<Publication> publications = publicationRepository.publicationsByQuantity(pag, pagTop);
+        //Calculo número posible de paginaciones que hay en base de datos
+        Double paginationDouble = (double) publications.size() / 15;
+        int pagination = (int) Math.ceil(paginationDouble);
+
+        if (!publications.isEmpty()) {
+            if (publications.size() > 14) {
+                //Envio solo 15 publicaciones que necesita el front
+                publications = publications.subList(0, 14);
+            } 
+
+            PublicationFilterDTO publicationsDTO = new PublicationFilterDTO(publications, pagination);
+            return publicationsDTO;
+
+        } else {
+            throw new DataAccessException("Publications not found") {
+            };
+        }
+    }
+
+    //Temporal
+    @Transactional
+    public void changeToPending(Long publicationId) {
+        Publication publication = publicationRepository.findById(publicationId).orElseThrow(() -> new DataAccessException("Publication not found") {
+        });
+        publication.setAuthorizationStatus(new StateRequest(1L));
+        
+        publicationRepository.save(publication);
+    
+    }
+    
 
 }

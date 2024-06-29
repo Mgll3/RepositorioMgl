@@ -1,6 +1,7 @@
 package com.gardengroup.agroplantationapp.controller;
 
 import com.gardengroup.agroplantationapp.model.entity.ProducerRequest;
+import com.gardengroup.agroplantationapp.service.IProducerRequestService;
 import com.gardengroup.agroplantationapp.service.SecurityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProducerRequestController {
     
     @Autowired
-    private com.gardengroup.agroplantationapp.service.ProducerRequestService ProducerRequestService;
+    private IProducerRequestService ProducerRequestService;
     @Autowired
     private SecurityService securityService;
 
@@ -86,14 +87,14 @@ public class ProducerRequestController {
         }
     }
 
-    @Operation(summary = "Solicitar ser productor", description = "Endpoint para solicitar ser productor", tags = {"User"})
+    @Operation(summary = "Solicitar ser productor", description = "Endpoint para solicitar ser productor", tags = {"Producer"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Solicitud creada con éxito",
                     content = @Content(schema = @Schema(implementation = String.class))),
             @ApiResponse(responseCode = "400", description = "Solicitud incorrecta - Error al crear la solicitud",
                     content = @Content(schema = @Schema(implementation = String.class)))
     })
-    @PostMapping("/request-producer")
+    @PostMapping("/requestProducer")
     public ResponseEntity<?> requestToBecomeProducer(HttpServletRequest request) {
         try {
             String email = securityService.getEmail(request);

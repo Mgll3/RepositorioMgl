@@ -15,11 +15,11 @@ public class CloudinaryService {
             "secure", true)
     );
 
-    public Map<String, Object> upload(MultipartFile file, String folder) {
+    public Map upload(MultipartFile file, String folder) {
         if (file.isEmpty()) throw new RuntimeException("File is empty");
         if (file.getSize() > 10485760) throw new RuntimeException("File is too large");
         try {
-            Map<String, Object> result = cloudinary.uploader()
+            Map result = cloudinary.uploader()
                     .upload(file.getBytes(), ObjectUtils.asMap("folder", folder));
             return result;
         } catch (Exception e) {

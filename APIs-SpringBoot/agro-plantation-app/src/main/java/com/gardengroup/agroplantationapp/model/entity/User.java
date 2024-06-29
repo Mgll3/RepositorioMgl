@@ -42,11 +42,11 @@ public class User {
     @Column(name = "password", length = 100 , nullable = false)
     private String password;
     
-
     @Column(columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean totalAuthorization;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private UserType userType;
 
     //Hago que la contraseña y el correo sea seguro y que no la envie al front
@@ -56,10 +56,9 @@ public class User {
     }
 
     @JsonIgnore
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
-
 
 
 }
