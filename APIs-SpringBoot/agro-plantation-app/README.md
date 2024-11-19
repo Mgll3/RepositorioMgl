@@ -3,6 +3,17 @@
 </div>
 <img src="https://media.discordapp.net/attachments/1194038261849542747/1248043035623817299/Header.jpg?ex=66623a27&is=6660e8a7&hm=31cf6f5be96ef730dfa21d9f364f06a27d8aca17d95d6ddca67d0da356ace9fa&=&format=webp">
 
+<h2> URL API:https://agro-plantation-app.onrender.com</h2>
+<h2> Documentación API:https://agro-plantation-app.onrender.com/swagger-ui/index.html#/</h2>
+<h2> URL Front:https://plant-in.netlify.app</h2>
+
+<h2> Requerimientos tecnicos Backend </h2>
+
+La Api Rest Full utiliza Spring Boot, Java y MYSQL, Seguridad con JWT y Spring Security, maneja imagenes por medio de la Api Cloudinary, Testing automatizado con JUnit y Mockito, analisis de codigo estatico con Sonar Cloud, documentación con swagger, manejo de Logs, docker, 
+Uso del patron DTO, patrones SOLID y Clean Code.
+
+SonarCloud: https://sonarcloud.io/summary/new_code?id=Mgll3_agro-plantation-app&branch=Dev-Back
+
 <h2><u><strong>🌱¿Qué es Plant-IN?🌱</strong></u></h2>
 
 Esta aplicación web está diseñada para promocionar las huertas agroecológicas dentro del territorio nacional Argentino. Los productores pueden publicar información sobre sus plantaciones de vegetales y frutas, previa autorización de un administrador. Los usuarios interesados pueden conocer la ubicación, procedencia y prácticas de cada huerta para consumir de manera más consciente. Además, la plataforma incluye un foro de consejos sobre plantación y técnicas agroecológicas, accesible públicamente para la visualización pero restringido a usuarios registrados para la publicación y comentarios. También permite a los productores llevar un registro privado de sus cosechas y ofrece publicaciones de prácticas agrícolas disponibles para todos los visitantes, registrados o no.
@@ -39,20 +50,6 @@ La aplicación busca incentivar las prácticas agroecológicas para maximizar la
         <li>
             <strong>Usuarios registrados:</strong> Pueden participar en el foro, haciendo publicaciones y comentarios sobre técnicas y experiencias agroecológicas.
         </li>
-    </ol>
-
-
-<h2><strong>🛠️Requerimientos Técnicos</strong></h2>
-    <ol>
-        <li>Registro y login con Spring Security.</li>
-        <li>Dos roles distintos para los usuarios (por ejemplo, admin y productor).</li>
-        <li>Inclusión de tablas HTML en alguna vista.</li>
-        <li>Carga y actualización de imágenes.</li>
-        <li>Creación de una query de búsqueda personalizada.</li>
-        <li>Implementación de un CRUD.</li>
-        <li>Al menos un formulario.</li>
-        <li>Tres vistas distintas.</li>
-        <li>Diagrama UML de entidades.</li>
     </ol>
 
 <h2><u><strong>💪Integrantes del Equipo</strong></u></h2>
